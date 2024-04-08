@@ -18,17 +18,29 @@ const pageCache = new CacheFirst({
     }),
   ],
 });
-
+// Warm cache for specific URLs
 warmStrategyCache({
   urls: ['/index.html', '/'],
   strategy: pageCache,
 });
 
-registerRoute(({ request }) => request.mode === 'navigate', pageCache);
+// Route for navigation requests
+registerRoute(
+  ({ request }) => request.mode === 'navigate', pageCache);
 
 // TODO: Implement asset caching
 registerRoute(
-  ({ request }) => request.destination === 'style' || request.destination === 'script' ||  request.destination === 'image',
+  ({ request }) => request.destination === 'style' || request.destination === 'script' || request.destination === 'image',
   // use the accsetCache strtaegy for cashing
-  assertsCache
+  new CacheFirst({
+    cacheName: 'assertsCache',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200]
+      }),
+      new ExpirationPlugin({
+        maxAgeSeconds: 30 * 24 * 60 * 60,
+      }),
+    ],
+  })
 );
