@@ -5,13 +5,10 @@
 This is a simple buliding the back end for a  text editor that allows users to create and edit documents. The appcation the user can creating and managing text documents efficiently, regardless of their device or location, while offering the performance and functionality of a native application.
 
 
-
-
 # Table of Contents
 - Installation
 - Usage
 - Credits
-- References
 - License
 - Questions
 
@@ -54,10 +51,7 @@ The following image shows the application's IndexedDB storage:
 ![alt text](image-3.png)
 
 # Credits 
-Thank you Mohit Dhankher and Louis Delia Tech Bootcamp Coding
-
-# References 
-
+Thank you Louis Delia Tech Bootcamp Coding
 
 # License
 This project is licensed under the MIT license.
