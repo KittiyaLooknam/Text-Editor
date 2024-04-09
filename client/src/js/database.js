@@ -30,20 +30,23 @@ export const putDb = async (content) => {
 // TODO: Add logic for a method that gets all the content from the database
 // Method to get all content from the database
 export const getDb = async () => {
-  try {
+  // try {
     const db = await openDB('jate', 1);
     const tx = db.transaction('jate', 'readonly');
     const store = tx.objectStore('jate');
-    const cursor = await store.openCursor();
-    const contentArray = [];
-    cursor?.forEach((entry) => {
-      contentArray.push(entry.value.content);
-    });
-    return contentArray;
-  } catch (e) {
-    console.error('getDb not implemented');
-    return [];
-  }
+    // const cursor = await store.openCursor;
+    // const contentArray = [];
+    // cursor?.forEach((entry) => {
+    //   contentArray.push(entry.value.content);
+    // });
+    const request = store.getAll();
+    const  result = await request;
+    return result.value;
+  //   return contentArray;
+  // } catch (e) {
+  //   console.error('getDb not implemented');
+  //   return [];
+  // }
 };
 
 initdb();
